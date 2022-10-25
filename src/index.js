@@ -122,7 +122,17 @@ app.get("/statement/date", verifyIfExistsAccountCPF, (req, res) => {
         new Date(dateFormat).toDateString()
     );
 
+    //usar data em formato americano
     return res.json(dateStatement);
+});
+
+app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
+    const { customer } = request;
+    const { name } = req.body;
+
+    customer.name = name;
+
+    return res.status(201).send();
 });
 
 app.listen(3333);
